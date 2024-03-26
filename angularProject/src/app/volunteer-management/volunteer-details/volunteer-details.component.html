@@ -1,0 +1,31 @@
+<p>volunteer-details works!</p>
+<div class="card" *ngIf="volunteer">
+<form [formGroup]="volunteerForm">
+    <div class="form-group">
+        <label for="volunteerFirstName">first_name:</label>
+        <input id="volunteerFirstName"class="form-control" type="text" name="firstName" formControlName="firstName" />
+    </div>
+    <div class="form-group">
+        <label for="volunteerLastName">last_name:</label>
+        <input id="volunteerLastName"class="form-control" type="text" name="lastName" formControlName="lastName"  />
+    </div>
+    <div class="form-group">
+        <label for="volunteertPhone">phone:</label>
+        <input id="volunteerPhone" class="form-control" type="text"  name="phone" formControlName="phone" />
+    </div>
+    <div class="form-group">
+        <label for="volunteerAddress">address:</label>
+        <input id="volunteerAddress"class="form-control" type="text" formControlName="address" />
+    </div>
+    <div class="form-group">
+        <label >days:</label>
+        <div>
+            <!-- <input class="form-control" type="checkbox" formControlName="days" />
+            <input class="form-control" type="checkbox" formControlName="days" />
+            <input class="form-control" type="checkbox" formControlName="days" /> -->
+            <input *ngFor="let day of volunteer?.days" class="form-control" type="checkbox" formControlName="days" />
+        </div>
+
+    </div>
+</form>
+</div>
