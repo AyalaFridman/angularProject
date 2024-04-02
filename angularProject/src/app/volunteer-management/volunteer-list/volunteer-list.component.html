@@ -1,8 +1,9 @@
 <p>volunteer-list works!</p>
 <ul class="list-group">
-    <li *ngFor="let volunteer of volunteerList" class="list-group-item">
+    <li *ngFor="let volunteer of volunteerList" class="list-group-item"
+    [ngStyle]="{'background-color':'rgb(196, 215, 248)'}">
         <div class="row">
-        <div class="col-1">
+        <div class="col-2">
             {{volunteer.id}}
         </div>
         <div class="col-2">
@@ -11,18 +12,18 @@
         <div class="col-3">
             {{volunteer.lastName}}
         </div>
-       <div class="col-4">
+       <div class="col-3">
         {{volunteer.phone}}
        </div>
-       <div class="col-5">
+       <div class="col-2">
         {{volunteer.address}}
        </div>
     </div>
     <div>
-        <button (click)="editVolunteer(volunteer)">edit</button>
+        <button class="btn btn-primary" (click)="editVolunteer(volunteer)">edit</button>
     </div>
     </li>
 </ul>
 <div>
-    <app-volunteer-details [volunteer]="selectVolunteer"></app-volunteer-details>
+    <!-- <app-volunteer-details  (onSaveVolunteer)="saveVolunteer($event)"></app-volunteer-details> -->
 </div>

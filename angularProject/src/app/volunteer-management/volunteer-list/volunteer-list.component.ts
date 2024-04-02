@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Volunteer } from '../volunteer.model';
 import { NgModel } from '@angular/forms';
 import { VolunteerService } from '../volunteer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-volunteer-list',
@@ -10,9 +11,8 @@ import { VolunteerService } from '../volunteer.service';
 })
 export class VolunteerListComponent {
 
-  constructor(private vs: VolunteerService) {
+  constructor(private vs: VolunteerService,private router:Router) {
     vs.get().subscribe(data => {
-      console.log("hhhhh");
       this.volunteerList = data;
       console.log(this.volunteerList);
     });
@@ -22,7 +22,14 @@ export class VolunteerListComponent {
   
   selectVolunteer?: Volunteer;
   volunteerList: Volunteer[] = [];
+
   editVolunteer = (v: Volunteer) => {
-    this.selectVolunteer = v;
+    this.router.navigate(['/volunteerDetial',{volunteer:JSON.stringify(v)}]);
+    // this.selectVolunteer = v;
+  }
+  saveVolunteer=(v: Volunteer)=>{
+    this.vs.save(v).subscribe(data=>{
+      this.volunteerList=data;
+    });
   }
 }

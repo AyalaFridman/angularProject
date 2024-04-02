@@ -1,0 +1,27 @@
+<p>scheduling-c works!</p>
+<table class="table table-sm"> 
+    <thead>
+        <tr >
+            <th scope="col" *ngFor="let day of weak">
+                 {{day}}
+            </th>
+        </tr>
+        <tr>
+            <td *ngFor="let day of days;index as i">
+                <div *ngFor="let v of day.volunteerList">
+                    <input type="radio" [name]="'radio_' + i" [value]="v.id">
+                    {{v.firstName}}
+                </div>
+            </td>  
+        </tr>
+  
+    </thead>
+
+</table> 
+<!-- <li *ngFor="let day of days">
+{{day.id}}
+<div *ngFor="let v of day.volunteerList">
+    {{v}}
+</div>
+</li> -->
+

@@ -6,5 +6,5 @@ public class Volunteer {
    public string? lastName {get;set;}
    public string? phone {get;set;}
    public string? address {get;set;}
-  public List<bool>? days{get;set;}
+   public bool[]? days {get;set;}
 }

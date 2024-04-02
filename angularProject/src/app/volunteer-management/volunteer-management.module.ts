@@ -4,15 +4,18 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list.componen
 import { VolunteerService } from './volunteer.service';
 import { VolunteerDetailsComponent } from './volunteer-details/volunteer-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Route, RouterModule } from '@angular/router';
 
-
+const V_ROUTES: Route[]=[
+{path:"volunteerDetial",component:VolunteerDetailsComponent}
+]
 
 @NgModule({
   declarations: [
     VolunteerListComponent,VolunteerDetailsComponent
   ],
   imports: [
-    CommonModule,ReactiveFormsModule
+    CommonModule,ReactiveFormsModule,RouterModule.forChild(V_ROUTES)
   ],
   providers:[
     VolunteerService

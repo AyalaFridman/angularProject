@@ -6,44 +6,39 @@ namespace server_myApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ServerController : ControllerBase
+public class VolunteerControler : ControllerBase
 {
 
-public ServerController(){
+public VolunteerControler(){
 
     }
  [HttpGet]   
  public List<Volunteer> Get(){
 
-    return ServerServices.Get();
+    return VolunteerServices.Get();
     
  } 
-[HttpGet("GetById/{id}")]
-        public ActionResult<Volunteer> GetByID(int id)
+[HttpGet("GetByDy/{id}")]
+        public List<Volunteer> GetByDay(int id)
         {
-            var volunteer = ServerServices.GetById(id);
-            if (volunteer==null)
-            {
-                return NotFound();
-            }
-            return volunteer;
+             return VolunteerServices.GetByDay(id);
         }                                                                                                                                                                                                                                                                                                                                                                  
 [HttpPost]
         public List<Volunteer> Post(Volunteer v)
         {
              System.Console.WriteLine("in post");
-            return ServerServices.AddVolunteer(v);
+            return VolunteerServices.AddVolunteer(v);
         }
 [HttpPut("{id}")]
         public List<Volunteer> Put(int id, [FromBody] Volunteer updatedVolunteer)
         {
-            return ServerServices.UpdateVolunteer(id,updatedVolunteer);
+            return VolunteerServices.UpdateVolunteer(id,updatedVolunteer);
         }
 
 [HttpDelete("{id}")]
          public List<Volunteer> Delete(int id)
          {
-            return ServerServices.DeleteVolunteerById(id);
+            return VolunteerServices.DeleteVolunteerById(id);
          }
 
 }

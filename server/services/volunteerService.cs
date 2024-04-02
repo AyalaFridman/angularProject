@@ -1,17 +1,19 @@
 using Models;
 namespace services
 {
-    public class ServerServices
+    public class VolunteerServices
     {
         static List<Volunteer>? VolunteerList{get; set;}
-        static ServerServices()
+        static List<Volunteer>? VolunteerListByDay{get; set;}
+        static VolunteerServices()
         {
             VolunteerList = new List<Volunteer>()
             {
-            new Volunteer() { id = 1, firstName = "sara", lastName= "levi", phone= "0556705897", address= "rashbi 4" ,days={}},
-            new Volunteer() { id = 2, firstName = "rachel", lastName = "glik", phone = "0527632016", address = "hritba 25",days={}},
-            new Volunteer() { id=  3, firstName = "rivka", lastName= "zer", phone= "0504189635", address= "jafo 2",days={}}
+            new Volunteer() { id = 1, firstName = "sara", lastName= "levi", phone= "0556705897", address= "rashbi 4" ,days=new bool[7]{false,true,true,true,true,true,true}},
+            new Volunteer() { id = 2, firstName = "rachel", lastName = "glik", phone = "0527632016", address = "hritba 25",days=new bool[7]{false,true,false,false,false,false,false}},
+            new Volunteer() { id=  3, firstName = "rivka", lastName= "zer", phone= "0504189635", address= "jafo 2",days=new bool[7]{true,true,true,true,true,true,true}}
             };
+            VolunteerListByDay=new List<Volunteer>(){};
         }
         public static List<Volunteer>? Get(){
             return VolunteerList;
@@ -32,6 +34,7 @@ namespace services
         {
             s.id= VolunteerList.Last().id+1;
             VolunteerList.Add(s);
+
             return VolunteerList;
         }
         public static List<Volunteer> UpdateVolunteer(int id, Volunteer updataVolunteer)
@@ -40,7 +43,18 @@ namespace services
             if (volunteerToUpdate!=null) {
                  VolunteerList[id-1] = updataVolunteer;
              }
+ 
              return VolunteerList;
+        }
+        public static List<Volunteer>? GetByDay(int id){
+            VolunteerListByDay=new List<Volunteer>(){};
+            foreach (var item in VolunteerList)
+            {
+                if(item.days[id]==true){
+                    VolunteerListByDay.Add(item);
+                }
+            }
+            return VolunteerListByDay;
         }
         public static List<Volunteer> DeleteVolunteerById(int id)
         {
