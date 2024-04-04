@@ -3,6 +3,8 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Volunteer } from '../volunteer.model';
 import { VolunteerService } from '../volunteer.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SchedulingrService } from 'src/app/scheduling/scheduling.service';
+// import { Days } from 'src/app/scheduling/days.model';
 
 @Component({
   selector: 'app-volunteer-details',
@@ -11,13 +13,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VolunteerDetailsComponent implements OnInit {
 
-  private _volunteer: Volunteer;
+  private _volunteer: Volunteer | undefined;
   volunteerForm: FormGroup = new FormGroup({});
   volunteerList: Volunteer[] = [];
-  router: any;
-  constructor(private vs: VolunteerService, private _acr: ActivatedRoute, private router1: Router) {
-    this._volunteer = JSON.parse(this._acr.snapshot.paramMap.get('volunteer') ?? '');
-    console.log(this._volunteer);
+  day:number[]=[];
+  constructor(private vs: VolunteerService, private _acr: ActivatedRoute, private router1: Router, private sl: SchedulingrService) {
+    this.vs.getById(+(this._acr.snapshot.paramMap.get('id') ?? '')).subscribe(data=>{
+      this._volunteer=data;
     if (this._volunteer) {
       this.volunteerForm = new FormGroup({
         "id": new FormControl(this._volunteer?.id),
@@ -28,7 +30,11 @@ export class VolunteerDetailsComponent implements OnInit {
         "days": new FormArray(this._volunteer?.days.map(day => new FormControl(day)))
       });
     }
-
+    this.sl.getDays().subscribe(data => {
+      this.day = data;
+    }
+    )
+  });
   }
 
   ngOnInit(): void {
@@ -41,7 +47,16 @@ export class VolunteerDetailsComponent implements OnInit {
   get days(): FormArray {
     return this.volunteerForm.get('days') as FormArray;
   }
-  saveDetials = () => {
+  saveDetials = (): void => {
+    for (let i = 0; i < this.volunteerForm.value.days.length; i++) {
+      if (this.volunteerForm.value.days[i] == false && this.volunteerForm.value.days[i] != this._volunteer?.days[i]) {
+          if (this.day[i] == this.volunteerForm.value.id) {
+            alert("eror");
+            return;
+          }
+      }
+    }
+    console.log("change volunteer")
     this.vs.save(this.volunteerForm.value).subscribe(data => {
       this.volunteerList = data;
       this.router1.navigate(["volunteer-management"]);

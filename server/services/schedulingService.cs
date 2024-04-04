@@ -3,45 +3,32 @@ namespace services
 {
     public class SchedulingServices
     {
-        static List<Scheduling>? SchedulingList{get; set;}
-        static List<int>? SchedulingList1{get; set;}
-        static SchedulingServices()
+        public static int[]? SchedulingList{get; set;}
+         static SchedulingServices()
         {
-            SchedulingList = new List<Scheduling>()
-            {
-            new Scheduling() { id = 5 },
-            new Scheduling() { id = 5},
-            new Scheduling() { id= 5},
-             new Scheduling() { id =5 },
-            new Scheduling() { id = 5},
-            new Scheduling() { id=  5},
-            new Scheduling() { id=  5}  
-            };
-            SchedulingList1 = new List<int>(){2,2,1,1,1,1,3};
+            SchedulingList=new int[6]{0,0,0,0,0,0};
         }
-        public static List<int>? Get(){
-            return SchedulingList1;
+        public static int[]? Get(){
+            return SchedulingList;
         }
 
-        
 
-        // public static List<Scheduling> AddScheduling(Scheduling s)
+        public static int[] AddScheduling(int[] updataScheduling)
+        {
+              SchedulingList=updataScheduling;
+              return SchedulingList;
+        }
+        // public static List<int> UpdateScheduling(int id, int updataScheduling)
         // {
-        //     s.id= SchedulingList.Last().id+1;
-        //     SchedulingList.Add(s);
-        //     return SchedulingList;
-        // }
-        public static List<int> UpdateScheduling(int id, int updataScheduling)
-        {
-            // System.Console.WriteLine("in up update"); 
-            // var SchedulingToUpdate = GetById(id);
+        //     // System.Console.WriteLine("in up update"); 
+        //     // var SchedulingToUpdate = GetById(id);
 
-            // if (SchedulingToUpdate!=null) {
-                 SchedulingList1[id-1] = updataScheduling;
-                 System.Console.WriteLine("in update"); 
-            //  }
-             return SchedulingList1;
-        }
+        //     // if (SchedulingToUpdate!=null) {
+        //          SchedulingList[id-1] = updataScheduling;
+        //          System.Console.WriteLine("in update"); 
+        //     //  }
+        //      return SchedulingList;
+        // }
         // public static List<Scheduling> DeleteSchedulingById(int id)
         // {
         //     foreach (var scheduling in SchedulingList)

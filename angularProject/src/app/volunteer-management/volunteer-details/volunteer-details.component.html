@@ -27,9 +27,9 @@
             <div class="form-group">
 
                 <label>days:</label>
-                <div formArrayName="days">
-                    <div *ngFor="let d of days.controls;index as i">
-                        <input type="checkbox" [formControlName]="i" />
+                <div formArrayName="days" >
+                    <div *ngFor="let d of days.controls;index as i" class="form-check">
+                        <input type="checkbox" [formControlName]="i" class="form-check-input"/>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-<p>volunteer-list works!</p>
+
 <ul class="list-group">
     <li *ngFor="let volunteer of volunteerList" class="list-group-item"
     [ngStyle]="{'background-color':'rgb(196, 215, 248)'}">
@@ -20,7 +20,7 @@
        </div>
     </div>
     <div>
-        <button class="btn btn-primary" (click)="editVolunteer(volunteer)">edit</button>
+        <button class="btn btn-primary" (click)="editVolunteer(volunteer.id)">edit</button>
     </div>
     </li>
 </ul>

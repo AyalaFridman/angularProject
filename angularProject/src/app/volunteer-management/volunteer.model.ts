@@ -4,5 +4,5 @@ export class Volunteer{
     lastName?: string;
     phone?:string;
     address?:string;
-    days:boolean[]=[false,false,false,false,false,false,false];
+    days:boolean[]=[false,false,false,false,false,false];
 }

@@ -1,27 +1,41 @@
-<p>scheduling-c works!</p>
-<table class="table table-sm"> 
+
+{{this.schedulingForm.value|json}}
+<table class="table table-sm" class="table table-bordered">
     <thead>
-        <tr >
-            <th scope="col" *ngFor="let day of weak">
-                 {{day}}
+        <tr>
+            <th class="table-info" scope="col" *ngFor="let day of weak">
+                {{day}}
             </th>
         </tr>
-        <tr>
-            <td *ngFor="let day of days;index as i">
-                <div *ngFor="let v of day.volunteerList">
-                    <input type="radio" [name]="'radio_' + i" [value]="v.id">
-                    {{v.firstName}}
-                </div>
-            </td>  
-        </tr>
-  
     </thead>
+    <tbody class="table-group-divider">
+        <tr >
+                <td *ngFor="let day of volunteers.controls; index as i">
+                    <form [formGroup]="schedulingForm">
+                        <div formArrayName="volunteers">
+                            <select [formControlName]="i" class="form-select" [ngClass]="{ 'selected-day': day?.value>0}">
+                                <option *ngFor="let v of volunteersForDay(i)" [ngValue]="v.id">{{v.firstName}} </option>
+                            </select>
+                        </div>
+                    </form>
+                </td>
+        </tr>
+        <!-- <tr>
+            <td *ngFor="let day of days;">
+                {{this.listVolunteer[day].firstName}}
+            </td>
+        </tr> -->
+    </tbody>
 
-</table> 
-<!-- <li *ngFor="let day of days">
-{{day.id}}
-<div *ngFor="let v of day.volunteerList">
-    {{v}}
-</div>
-</li> -->
 
+
+</table>
+<button class="btn btn-primary" class="btn btn-info" (click)="saveSheduling()">save</button>
+
+<!-- <tr>
+    <td *ngFor="let volunteer of volunteers.controls; let i = index">
+        <form [formGroup]="volunteer">
+            
+        </form>
+    </td>
+</tr> -->

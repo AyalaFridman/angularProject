@@ -23,9 +23,8 @@ export class VolunteerListComponent {
   selectVolunteer?: Volunteer;
   volunteerList: Volunteer[] = [];
 
-  editVolunteer = (v: Volunteer) => {
-    this.router.navigate(['/volunteerDetial',{volunteer:JSON.stringify(v)}]);
-    // this.selectVolunteer = v;
+  editVolunteer = (id: number) => {
+    this.router.navigate(['volunteer-management/volunteerDetial/',id]);
   }
   saveVolunteer=(v: Volunteer)=>{
     this.vs.save(v).subscribe(data=>{

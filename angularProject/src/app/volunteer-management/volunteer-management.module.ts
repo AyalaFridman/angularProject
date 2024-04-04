@@ -7,7 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Route, RouterModule } from '@angular/router';
 
 const V_ROUTES: Route[]=[
-{path:"volunteerDetial",component:VolunteerDetailsComponent}
+{path:"volunteer-management/volunteerDetial",component:VolunteerDetailsComponent},
+{path:"volunteer-management/volunteerDetial/:id",component:VolunteerDetailsComponent}
 ]
 
 @NgModule({

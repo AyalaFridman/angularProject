@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SchedulingCComponent } from './scheduling-c/scheduling-c.component';
 import { SchedulingrService } from './scheduling.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -10,7 +11,7 @@ import { SchedulingrService } from './scheduling.service';
     SchedulingCComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule,ReactiveFormsModule
   ],
   providers:[
     SchedulingrService

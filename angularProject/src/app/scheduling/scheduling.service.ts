@@ -1,22 +1,23 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Days } from "./days.model";
+// import { Days } from "./days.model";
 import { Volunteer } from "../volunteer-management/volunteer.model";
 import { VolunteerService } from "../volunteer-management/volunteer.service";
 
 @Injectable()
 export class SchedulingrService {
-    constructor(private _http: HttpClient) {
+    constructor(private _http:HttpClient) {
 
     }
     volunteerList: Volunteer[] = [];
     getDays = (): Observable<number[]> => {
         return this._http.get<number[]>("api/SchedulingControler");
     }
-    save = (id: number, s: number): Observable<number[]> => {
-        console.log("in server");
-        return this._http.put<number[]>(`api/SchedulingControler/${id}`, s);
+    save = (s: number[]): Observable<number[]> => {
+        console.log("in services") ;
+        console.log(s);
+        return this._http.post<number[]>("api/SchedulingControler", s);
     }
     // getVolunteer = (day: number): string[]=> {
     //     this._http.get<Volunteer[]>("api/VolunteerControler").subscribe(data => {   
@@ -73,7 +74,7 @@ export class SchedulingrService {
     //     return this.volunteerList;
     // }
     getVolunteer = (day: number): Observable<Volunteer[]>=> {
-       return this._http.get<Volunteer[]>(`api/VolunteerControler/GetByDy/${day}`);
+       return this._http.get<Volunteer[]>(`api/VolunteerControler/GetByDay/${day}`);
     }
 
 }

@@ -18,10 +18,10 @@ public VolunteerControler(){
     return VolunteerServices.Get();
     
  } 
-[HttpGet("GetByDy/{id}")]
-        public List<Volunteer> GetByDay(int id)
+[HttpGet("GetByID/{id}")]
+        public Volunteer GetByDay(int id)
         {
-             return VolunteerServices.GetByDay(id);
+             return VolunteerServices.GetById(id);
         }                                                                                                                                                                                                                                                                                                                                                                  
 [HttpPost]
         public List<Volunteer> Post(Volunteer v)
